@@ -11,7 +11,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async{    
+    var catalogJson = await rootBundle.loadString("images/catalog.json");
+    var decodedData = jsonDecode(catalogJson);
+    var productData = decodedData["products"];
+    CatalogModel.items = List.from(productData).map<Item>((item) => Item.fromMap(item)).toList();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView.builder(
         itemCount: CatalogModel.items.length,
         itemBuilder: (context, index) {
-          return ItemWidget(item : CatalogModel.items[index]);
+          return ItemWidget(item: CatalogModel.items[index]); 
         },
       ),
       drawer: Drawer(

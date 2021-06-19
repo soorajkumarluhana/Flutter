@@ -13,7 +13,6 @@ class ItemWidget extends StatelessWidget {
         leading:  Image.asset(item.image),
         title: Text(item.name), 
         subtitle: Text(item.desc),
-        
         trailing: Text("\$${item.price.toString()}"),
       ),
     );
