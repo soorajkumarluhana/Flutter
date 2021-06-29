@@ -11,7 +11,7 @@ class Item {
   final String image;
 
   Item(this.id, this.name, this.desc, this.price, this.color, this.image);
-
+  
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(
       map["id"],
